@@ -8,10 +8,8 @@ const TodoList = () => {
   const [name, setName] = useState("");
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
-
   const [todos, setTodos] = useState([]);
 
-  // Load todos from local storage on component mount
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
     setTodos(storedTodos);
@@ -32,10 +30,7 @@ const TodoList = () => {
     if (!isNaN(num1) && !isNaN(num2)) {
       const newTodo = { name, result: `${name}'ning natijasi: ${num1 + num2}` };
 
-      // Update state with the new todo
       setTodos((prevTodos) => [...prevTodos, newTodo]);
-
-      // Update local storage with the new todos
       localStorage.setItem("todos", JSON.stringify([...todos, newTodo]));
 
       setName("");
@@ -45,6 +40,12 @@ const TodoList = () => {
     } else {
       alert("Iltimos, to'g'ri sonlarni kiriting");
     }
+  };
+
+  const handleDeleteTodo = (index) => {
+    const updatedTodos = todos.filter((_, i) => i !== index);
+    setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
   };
 
   return (
@@ -90,7 +91,10 @@ const TodoList = () => {
       </Modal>
 
       {todos.map((todo, index) => (
-        <p key={index}>{todo.result}</p>
+        <div key={index} className="flex gap-3" >
+          <p>{todo.result}</p>
+          <button className="btn" onClick={() => handleDeleteTodo(index)}>Delete</button>
+        </div>
       ))}
     </div>
   );
