@@ -1,0 +1,41 @@
+
+  .todo{
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .modalist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  input{
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 10px;
+   letter-spacing: 1px;
+  
+  }
+  .modal_label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .modal-content {
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
